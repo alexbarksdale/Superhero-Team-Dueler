@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 
 # TODO: Add better comments/doc strings
 
@@ -51,7 +51,7 @@ class Hero:
         self.armors.append(armor)
 
     # Runs 'block' method on each armor.
-    def defend(self, damage_amt):
+    def defend(self, damage_amt=0):
         blocked = 0
         for armor in self.armors:
             block = armor.block()
@@ -92,6 +92,12 @@ class Hero:
     # Update deaths with num_deaths and add the number of deaths to self.deaths
     def add_deaths(self, num_deaths):
         self.deaths += num_deaths
+
+
+class Weapon(Ability):
+    # Method returns a random value between half the power to the full attack power of the weapon
+    def attack(self):
+        return randint(self.max_damage // 2, self.max_damage)
 
 
 if __name__ == "__main__":
