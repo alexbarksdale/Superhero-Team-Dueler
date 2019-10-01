@@ -38,7 +38,8 @@ class Hero:
     """
 
     def attack(self):
-        total_damage = 0
+        # Default danage value of 50 incase the user doesn't want any abilities or weapons.
+        total_damage = 50
         for ability in self.abilities:
             total_damage += ability.attack()
         return total_damage
@@ -66,7 +67,7 @@ class Hero:
         current_heath = self.current_health
         damage_defense = self.defend(damage)
 
-        self.current_health = current_heath - damage_defense
+        self.current_health = current_heath - (damage - damage_defense)
 
     """
     Returns true or false depending on whether the hero is alive or not
@@ -81,7 +82,6 @@ class Hero:
 
     def fight(self, opponent):
         while self.is_alive() and opponent.is_alive():
-
             self.take_damage(opponent.attack())
             opponent.take_damage(self.attack())
 
